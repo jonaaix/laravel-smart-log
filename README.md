@@ -17,7 +17,7 @@ Context-aware logging wrapper for Laravel applications.
   <a href="https://packagist.org/packages/aaix/laravel-smart-log">
     <img src="https://img.shields.io/packagist/dt/aaix/laravel-smart-log.svg?style=flat-square" alt="Total Downloads">
   </a>
-  <a href="https://github.com/jonaaix/laravel-smart-log/blob/main/LICENSE.md">
+  <a href="https://github.com/jonaaix/laravel-smart-log/blob/main/LICENSE">
     <img src="https://img.shields.io/packagist/l/aaix/laravel-smart-log.svg?style=flat-square" alt="License">
   </a>
 </p>
