@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/jonaaix/laravel-smart-log">
-    <img src="https://raw.githubusercontent.com/jonaaix/laravel-smart-log/main/docs/logo.webp" alt="Laravel SmartLog Logo" width="200">
+    <img src="https://raw.githubusercontent.com/jonaaix/laravel-smart-log/refs/heads/main/docs/logo.webp" alt="Laravel SmartLog Logo" width="170">
   </a>
 </p>
 
