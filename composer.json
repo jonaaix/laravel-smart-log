@@ -1,11 +1,11 @@
 {
-   "name": "jonaaix/laravel-smart-log",
+   "name": "aaix/laravel-smart-log",
    "description": "Context-aware logging wrapper for Laravel applications",
    "type": "library",
    "license": "MIT",
    "autoload": {
       "psr-4": {
-         "Jonaaix\\SmartLog\\": "src/"
+         "Aaix\\SmartLog\\": "src/"
       }
    },
    "authors": [
@@ -23,7 +23,7 @@
    "extra": {
       "laravel": {
          "providers": [
-            "Jonaaix\\SmartLog\\SmartLogServiceProvider"
+            "Aaix\\SmartLog\\SmartLogServiceProvider"
          ]
       }
    },

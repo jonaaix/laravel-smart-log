@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jonaaix\SmartLog;
+namespace Aaix\SmartLog;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;

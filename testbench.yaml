@@ -1,2 +1,2 @@
 providers:
-   - Jonaaix\SmartLog\SmartLogServiceProvider
+   - Aaix\SmartLog\SmartLogServiceProvider

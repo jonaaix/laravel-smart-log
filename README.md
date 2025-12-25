@@ -33,7 +33,7 @@ SmartLog intelligently routes your messages based on context (CLI vs. Web) and c
 ## Installation
 
 ```bash
-composer require jonaaix/laravel-smart-log
+composer require aaix/laravel-smart-log
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ composer require jonaaix/laravel-smart-log
 Use `SmartLog` anywhere in your code. It automatically detects if it's running inside an Artisan command or a web request.
 
 ```php
-use Jonaaix\SmartLog\SmartLog;
+use Aaix\SmartLog\SmartLog;
 
 // 1. Standard Output (CLI: White | File: Ignored)
 // Perfect for progress bars, raw data dumps, or steps.

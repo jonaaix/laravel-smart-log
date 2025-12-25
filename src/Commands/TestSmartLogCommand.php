@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jonaaix\SmartLog\Commands;
+namespace Aaix\SmartLog\Commands;
 
 use Illuminate\Console\Command;
-use Jonaaix\SmartLog\SmartLog;
+use Aaix\SmartLog\SmartLog;
 
 class TestSmartLogCommand extends Command
 {

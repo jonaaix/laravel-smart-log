@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jonaaix\SmartLog;
+namespace Aaix\SmartLog;
 
 use Illuminate\Support\ServiceProvider;
-use Jonaaix\SmartLog\Commands\TestSmartLogCommand;
+use Aaix\SmartLog\Commands\TestSmartLogCommand;
 
 class SmartLogServiceProvider extends ServiceProvider
 {
