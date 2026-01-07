@@ -24,28 +24,30 @@ class SmartLog
       self::handle('debug', 'fg=gray', ...$data);
    }
 
-   public static function info(string $message, mixed $context = []): void
+   public static function info(mixed ...$data): void
    {
-      self::handle('info', 'fg=cyan', $message, $context);
+      self::handle('info', 'fg=cyan', ...$data);
    }
 
-   public static function success(string $message, mixed $context = []): void
+   public static function success(mixed ...$data): void
    {
-      self::handle('info', 'info', $message, $context);
+      self::handle('info', 'info', ...$data);
    }
 
-   public static function warning(string $message, mixed $context = []): void
+   public static function warning(mixed ...$data): void
    {
-      self::handle('warning', 'comment', $message, $context);
+      self::handle('warning', 'comment', ...$data);
    }
 
-   public static function error(string $message, mixed $context = []): void
+   public static function error(mixed ...$data): void
    {
-      self::handle('error', 'error', $message, $context);
+      self::handle('error', 'error', ...$data);
    }
 
-   public static function successBlock(string $message, mixed $context = []): void
+   public static function successBlock(mixed ...$data): void
    {
+      [$message, $context] = self::resolveMessageAndContext($data);
+
       self::persist('info', $message, $context);
 
       if (App::runningInConsole()) {
@@ -53,8 +55,10 @@ class SmartLog
       }
    }
 
-   public static function errorBlock(string $message, mixed $context = []): void
+   public static function errorBlock(mixed ...$data): void
    {
+      [$message, $context] = self::resolveMessageAndContext($data);
+
       self::persist('error', $message, $context);
 
       if (App::runningInConsole()) {
@@ -64,8 +68,7 @@ class SmartLog
 
    private static function handle(string $level, ?string $cliTag, mixed ...$data): void
    {
-      $message = (string)($data[0] ?? '');
-      $context = (array)($data[1] ?? []);
+      [$message, $context] = self::resolveMessageAndContext($data);
 
       self::persist($level, $message, $context);
 
@@ -74,10 +77,30 @@ class SmartLog
       }
    }
 
+   private static function resolveMessageAndContext(array $data): array
+   {
+      if (empty($data)) {
+         return ['Empty Log Entry', []];
+      }
+
+      $first = $data[0];
+
+      if (is_string($first) || is_numeric($first)) {
+         return [(string) $first, array_slice($data, 1)];
+      }
+
+      return ['Unnamed log', $data];
+   }
+
    private static function persist(string $level, string $message, array $context): void
    {
       if (in_array($level, config('smart-log.persist_levels', []))) {
          $laravelMethod = $level === 'console' ? 'debug' : $level;
+
+         if (!method_exists(Log::class, $laravelMethod)) {
+            $laravelMethod = 'debug';
+         }
+
          Log::$laravelMethod($message, $context);
       }
    }

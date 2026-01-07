@@ -1,5 +1,4 @@
 {
-   "version": "1.0.2",
    "name": "aaix/laravel-smart-log",
    "description": "Context-aware logging wrapper for Laravel applications",
    "type": "library",
