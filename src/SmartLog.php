@@ -51,7 +51,8 @@ class SmartLog
       self::persist('info', $message, $context);
 
       if (App::runningInConsole()) {
-         self::createStyle()->success($message);
+         $prefix = self::getCallerPrefix();
+         self::createStyle()->success($prefix . $message);
       }
    }
 
@@ -62,7 +63,8 @@ class SmartLog
       self::persist('error', $message, $context);
 
       if (App::runningInConsole()) {
-         self::createStyle()->error($message);
+         $prefix = self::getCallerPrefix();
+         self::createStyle()->error($prefix . $message);
       }
    }
 
@@ -128,10 +130,27 @@ class SmartLog
 
       $text = implode(' ', $messages);
 
+      // Add caller prefix
+      $text = self::getCallerPrefix() . $text;
+
       if ($tag) {
          self::$output->writeln("<$tag>$text</>");
       } else {
          self::$output->writeln($text);
       }
+   }
+
+   private static function getCallerPrefix(): string
+   {
+      // Limit backtrace to 5 frames to save performance
+      $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
+
+      foreach ($trace as $frame) {
+         if (isset($frame['class']) && $frame['class'] !== self::class) {
+            return '[' . class_basename($frame['class']) . '] ';
+         }
+      }
+
+      return '';
    }
 }
